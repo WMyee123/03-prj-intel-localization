@@ -5,11 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intel: Sustainability Through the Ages</title>
   <link rel="stylesheet" href="style.css" />
+  <link id="bootstrap-css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <script>
+    var rtlLangs = ['ar', 'he', 'fa', 'ur'];
+    if (rtlLangs.includes(document.documentElement.lang.split('-')[0])) {
+      document.documentElement.dir = 'rtl';
+      document.getElementById('bootstrap-css').href =
+        'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css';
+    }
+  </script>
 </head>
 <body>
 
+  <!-- Skip Navigation Link -->
+  <a href="#main-content" class="visually-hidden-focusable skip-link">Skip to main content</a>
+
   <!-- Header / Hero Section -->
-  <header>
+  <header role="banner">
     <div>
       <img src="img/intel-header-logo.svg" alt="Intel Logo" />
       <!-- Main Heading -->
@@ -26,13 +38,17 @@
     </div>
   </header>
 
+  <main id="main-content">
+
   <!-- Timeline Cards Section -->
-  <section>
+  <section class="timeline" aria-label="Intel sustainability timeline">
     <!-- Card 1: 1968 -->
-    <div>
-      <h2>1968</h2>
-      <h3>Intel Founded</h3>
-      <img src="img/1.jpg" alt="Placeholder Image" />
+    <div class="timeline-card">
+      <div class="card-header">
+        <h2>1968</h2>
+        <h3>Intel Founded</h3>
+      </div>
+      <img src="img/1.jpg" alt="Intel Corporation founding in 1968 by Robert Noyce and Gordon Moore" />
       <p>
         Robert Noyce and Gordon Moore rename the newly formed company 
         NM Electronics to Intel Corporation, laying the foundation for 
@@ -41,10 +57,12 @@
     </div>
 
     <!-- Card 2: 1971 -->
-    <div>
-      <h2>1971</h2>
-      <h3>First Microprocessor</h3>
-      <img src="img/2.jpg" alt="Placeholder Image" />
+    <div class="timeline-card">
+      <div class="card-header">
+        <h2>1971</h2>
+        <h3>First Microprocessor</h3>
+      </div>
+      <img src="img/2.jpg" alt="The Intel 4004, the world's first commercial microprocessor released in 1971" />
       <p>
         Intel debuts the 4004, the world's first commercial microprocessor, 
         igniting the microprocessor revolution and propelling the future 
@@ -53,10 +71,12 @@
     </div>
 
     <!-- Card 3: 1978 -->
-    <div>
-      <h2>1978</h2>
-      <h3>8086 Processor</h3>
-      <img src="img/3.jpg" alt="Placeholder Image" />
+    <div class="timeline-card">
+      <div class="card-header">
+        <h2>1978</h2>
+        <h3>8086 Processor</h3>
+      </div>
+      <img src="img/3.jpg" alt="The Intel 8086 processor that established the x86 architecture in 1978" />
       <p>
         Launch of the 8086 processor, establishing the x86 architecture 
         that drives countless PCs and servers in the modern era.
@@ -64,10 +84,12 @@
     </div>
 
     <!-- Card 4: 1985 -->
-    <div>
-      <h2>1985</h2>
-      <h3>386 Processor</h3>
-      <img src="img/4.jpg" alt="Placeholder Image" />
+    <div class="timeline-card">
+      <div class="card-header">
+        <h2>1985</h2>
+        <h3>386 Processor</h3>
+      </div>
+      <img src="img/4.jpg" alt="The Intel 386 processor with 32-bit architecture released in 1985" />
       <p>
         Intel introduces the 386 processor with 32-bit architecture, 
         ushering in a new era of performance and multitasking for 
@@ -76,10 +98,12 @@
     </div>
 
     <!-- Card 5: 2006 -->
-    <div>
-      <h2>2006</h2>
-      <h3>Peak GHG Emissions</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
+    <div class="timeline-card">
+      <div class="card-header">
+        <h2>2006</h2>
+        <h3>Peak GHG Emissions</h3>
+      </div>
+      <img src="https://placehold.co/250x100" alt="Chart representing Intel's peak greenhouse gas emissions in 2006" />
       <p>
         This year marks Intel's highest annual greenhouse gas emissions 
         for operations. Over subsequent years, Intel invests heavily in 
@@ -89,10 +113,12 @@
     </div>
 
     <!-- Card 6: 2020 -->
-    <div>
-      <h2>2020</h2>
-      <h3>RISE Strategy</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
+    <div class="timeline-card">
+      <div class="card-header">
+        <h2>2020</h2>
+        <h3>RISE Strategy</h3>
+      </div>
+      <img src="https://placehold.co/250x100" alt="Intel's RISE strategy launch in 2020 focusing on responsibility, inclusivity, sustainability, and enablement" />
       <p>
         Intel launches its RISE (Responsible, Inclusive, Sustainable, 
         Enabling) strategy and 2030 goals, aiming to drive industry-wide 
@@ -101,10 +127,12 @@
     </div>
 
     <!-- Card 7: 2022 -->
-    <div>
-      <h2>2022</h2>
-      <h3>Net-Zero By 2040</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
+    <div class="timeline-card">
+      <div class="card-header">
+        <h2>2022</h2>
+        <h3>Net-Zero By 2040</h3>
+      </div>
+      <img src="https://placehold.co/250x100" alt="Intel's 2022 commitment to achieve net-zero greenhouse gas emissions by 2040" />
       <p>
         Intel announces its commitment to achieve net-zero greenhouse 
         gas emissions (Scope 1 and 2) across its global operations 
@@ -113,10 +141,12 @@
     </div>
 
     <!-- Card 8: 2023 -->
-    <div>
-      <h2>2023</h2>
-      <h3>Renewable Electricity</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
+    <div class="timeline-card">
+      <div class="card-header">
+        <h2>2023</h2>
+        <h3>Renewable Electricity</h3>
+      </div>
+      <img src="https://placehold.co/250x100" alt="Intel achieving 99% renewable electricity usage worldwide in 2023" />
       <p>
         The company achieves 99% renewable electricity usage worldwide, 
         helping to drastically lower carbon emissions and driving progress 
@@ -125,10 +155,12 @@
     </div>
 
     <!-- Card 9: 2024 -->
-    <div>
-      <h2>2024</h2>
-      <h3>Sustainability Summit</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
+    <div class="timeline-card">
+      <div class="card-header">
+        <h2>2024</h2>
+        <h3>Sustainability Summit</h3>
+      </div>
+      <img src="https://placehold.co/250x100" alt="Intel's first Sustainability Summit in 2024 with industry leaders and government officials" />
       <p>
         Intel hosts its first Sustainability Summit, uniting suppliers, 
         government officials, and industry leaders to collaborate on 
@@ -138,11 +170,10 @@
   </section>
 
   <!-- 3-Column Content Section -->
-  <section>
-    <div>
-      
+  <section class="container py-4" aria-label="Intel sustainability initiatives">
+    <div class="row g-4">
       <!-- Column 1 -->
-      <div>
+      <div class="col-md-4">
         <h2>RISE Strategy</h2>
         <p>
           Under its RISE (Responsible, Inclusive, Sustainable, Enabling) strategy, 
@@ -150,11 +181,11 @@
           progress on climate action, water stewardship, and waste reduction.
         </p>
         <!-- Learn More Button -->
-        <a href="#">Learn More</a>
+        <a href="#" class="btn btn-primary" aria-label="Learn more about Intel's RISE Strategy">Learn More</a>
       </div>
 
       <!-- Column 2 -->
-      <div>
+      <div class="col-md-4">
         <h2>Commitment</h2>
         <p>
           In 2022, Intel pledged to achieve net-zero greenhouse gas emissions 
@@ -163,11 +194,11 @@
           industry.
         </p>
         <!-- Learn More Button -->
-        <a href="#">Learn More</a>
+        <a href="#" class="btn btn-primary" aria-label="Learn more about Intel's net-zero commitment">Learn More</a>
       </div>
 
       <!-- Column 3 -->
-      <div>
+      <div class="col-md-4">
         <h2>Water &amp; Waste</h2>
         <p>
           Intel conserves billions of gallons of water annually and 
@@ -176,16 +207,32 @@
           advance a circular economy.
         </p>
         <!-- Learn More Button -->
-        <a href="#">Learn More</a>
+        <a href="#" class="btn btn-primary" aria-label="Learn more about Intel's water and waste initiatives">Learn More</a>
       </div>
 
     </div>
   </section>
 
   <!-- Subscription Form -->
-  <section>
+  <section class="container py-4" aria-label="Newsletter subscription">
     <h2>Subscribe to our Newsletter</h2>
-    <!-- Add form here -->
+    <form aria-label="Newsletter subscription form">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required aria-required="true" autocomplete="name" />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required aria-required="true" autocomplete="email" />
+      </div>
+      <div class="mb-3">
+        <label for="notes" class="form-label">Notes</label>
+        <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Any additional notes"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,0 +1,443 @@
+/* ============================================
+   GLOBAL STYLES
+   Base resets and page-wide defaults.
+   ============================================ */
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  /* Base font size scales fluidly with the screen width */
+  font-size: clamp(14px, 1.6vw, 20px);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  /* Friendly, rounded sans-serif font */
+  font-family: 'Segoe UI', 'Nunito', 'Poppins', sans-serif;
+}
+
+
+/* ============================================
+   HEADER
+   Blue banner with the Intel logo, title, and
+   subtitle. Sizes scale with the viewport.
+   ============================================ */
+
+header {
+  background-color: #0066cc;
+  padding: clamp(1vh, 1.5vw, 2vh) clamp(1vh, 2vw, 2vh);
+  text-align: center;
+
+  /* Prevent the header from growing or shrinking */
+  flex: 0 0 auto;
+}
+
+/* Intel logo */
+header img {
+  width: clamp(7vh, 9vw, 14vh);
+  height: auto;
+  display: block;
+  margin: 0 auto clamp(0.5vh, 1vw, 1vh);
+}
+
+/* Main heading */
+header h1 {
+  font-size: clamp(1rem, 3vw, 2rem);
+  font-weight: bold;
+  text-transform: capitalize;
+  margin: clamp(0.5vh, 0.8vw, 1vh) 0;
+  color: white;
+}
+
+/* Subtitle / description */
+header p {
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  color: white;
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+
+/* ============================================
+   TIMELINE SECTION (large screens)
+   Horizontally scrolling row of cards.
+   ============================================ */
+
+.timeline {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 2vh;
+  padding: 4vh;
+
+  /* Size to fit content */
+  flex: 0 0 auto;
+
+  /* Horizontal scroll with snap */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-padding: 2vh;
+  scroll-snap-type: x mandatory;
+}
+
+
+/* ============================================
+   CARD STYLES (large screens)
+   Each card is a row: image + headers on the
+   left, description text on the right.
+
+   We use ".timeline-card" so inner layout divs
+   (like .card-left) are not affected.
+   ============================================ */
+
+.timeline-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 2vh;
+  padding: 1.5vh;
+
+  /* Fixed card height */
+  height: clamp(15vh, 20vw, 30vh);
+
+  /* Border and shadow */
+  border: 0.1vh solid #0066cc;
+  border-radius: 0.8vh;
+  box-shadow: 0 0.2vh 0.4vh rgba(0, 0, 0, 0.1);
+
+  /* Fixed-width cards — compact when not hovered, wide enough for image + text */
+  flex: 0 0 clamp(30vh, 40vw, 55vh);
+  width: clamp(30vh, 40vw, 55vh);
+  max-width: clamp(30vh, 40vw, 55vh);
+  position: relative;
+  overflow: hidden;
+
+  /* Scroll snap */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  /* Smooth hover animation — fast collapse, slow expand */
+  transition: flex 0.3s ease, width 0.3s ease, max-width 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card hover — expand to show description */
+.timeline-card:hover {
+  flex: 0 0 70vw;
+  width: 70vw;
+  max-width: 70vw;
+  box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  transition: flex 1s ease, width 1s ease, max-width 1s ease, box-shadow 1s ease;
+}
+
+
+/* --- Card image ---
+   Fills the card height; aspect-ratio keeps it square. */
+.timeline-card img {
+  height: 100%;
+  width: auto;
+  /* aspect-ratio: 1 / 1; */
+  object-fit: cover;
+  border-radius: 1vh;
+  display: block;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Year heading */
+.timeline-card h2 {
+  margin: 0;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: #0066cc;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Event title */
+.timeline-card h3 {
+  margin: 0;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: #333;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+
+/* --- Right column: description text ---
+   Hidden by default, revealed on hover. */
+.timeline-card p {
+  margin: 0;
+  color: #666;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+
+  /* Hidden by default */
+  opacity: 0;
+  max-width: 0;
+  font-size: 0px;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-width 0.3s ease, font-size 0.3s ease;
+}
+
+/* Show description on hover */
+.timeline-card:hover p {
+  opacity: 1;
+  font-size: clamp(0.65rem, 1.2vw, 0.9rem);
+  max-width: 60vw;
+  transition: opacity 1s ease, max-width 1s ease, font-size 1s ease;
+}
+
+
+/* ============================================
+   RESPONSIVE — MEDIUM SCREENS (481px – 768px)
+   Cards displayed in a 2-column grid that scrolls
+   vertically, with all content visible in each card.
+   ============================================ */
+
+@media (max-width: 768px) and (min-width: 481px) {
+
+  /* --- Header --- */
+  header {
+    padding: clamp(2vh, 4vw, 4vh) clamp(1.5vh, 3vw, 3vh);
+    text-align: center;
+  }
+
+  header img {
+    width: clamp(9vh, 18vw, 14vh);
+    height: auto;
+  }
+
+  header h1 {
+    font-size: clamp(1.3em, 5.5vw, 1.8em);
+    margin: clamp(0.5vh, 2vw, 1vh) 0;
+    text-align: center;
+  }
+
+  header p {
+    font-size: clamp(0.8em, 3.5vw, 0.95em);
+    max-width: 90vw;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+
+  /* --- Section: 2-column wrapping grid, vertical scroll --- */
+  .timeline {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto;
+    min-height: 0;
+    gap: 2vh;
+    padding: 2vh;
+    scroll-snap-type: y mandatory;
+  }
+
+
+  /* --- Cards: 2 per row, stacked content --- */
+  .timeline-card {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5vh;
+    padding: 2vh;
+    overflow: visible;
+
+    /* Two cards per row with gap accounted for */
+    flex: 0 0 calc(50% - 1vh);
+    width: calc(50% - 1vh);
+    max-width: calc(50% - 1vh);
+    height: auto;
+
+    border-radius: 0.8vh;
+
+    /* Scroll snap */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    /* Disable hover expand */
+    transition: none;
+  }
+
+  /* Card hover — no size change */
+  .timeline-card:hover {
+    flex: 0 0 calc(50% - 1vh);
+    width: calc(50% - 1vh);
+    max-width: calc(50% - 1vh);
+    box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    transition: box-shadow 0.3s ease;
+  }
+
+
+  /* --- Card image: full-width within card --- */
+  .timeline-card img {
+    width: 100%;
+    height: auto;
+    flex: 0 0 auto;
+    object-fit: cover;
+    border-radius: 0.6vh;
+  }
+
+
+  /* --- Description: always visible --- */
+  .timeline-card p {
+    flex: 0 0 auto;
+    max-width: none;
+    opacity: 1;
+    overflow: visible;
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+    line-height: 1.5;
+    text-align: center;
+    padding: 0 1vh;
+    color: #0f0f0f;
+  }
+
+  .timeline-card:hover p {
+    opacity: 1;
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+    max-width: none;
+  }
+
+
+  /* --- Text sizes --- */
+  .timeline-card h2 {
+    font-size: clamp(1em, 4vw, 1.2em);
+  }
+
+  .timeline-card h3 {
+    font-size: clamp(0.9em, 3.5vw, 1.3em);
+  }
+}
+
+
+/* ============================================
+   RESPONSIVE — SMALL SCREENS (max-width 480px)
+   Cards stack vertically in a single column,
+   scroll direction is vertical, and all content
+   and images are fully visible without hover.
+   ============================================ */
+
+@media (max-width: 480px) {
+
+  /* --- Header: larger padding + centered text --- */
+  header {
+    padding: clamp(2vh, 4vw, 4vh) clamp(1.5vh, 3vw, 3vh);
+    text-align: center;
+  }
+
+  header img {
+    width: clamp(9vh, 18vw, 14vh);
+    height: auto;
+  }
+
+  header h1 {
+    font-size: clamp(1.3em, 5.5vw, 1.8em);
+    margin: clamp(0.5vh, 2vw, 1vh) 0;
+    text-align: center;
+  }
+
+  header p {
+    font-size: clamp(0.8em, 3.5vw, 0.95em);
+    max-width: 90vw;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+
+  /* --- Section: vertical scroll --- */
+  .timeline {
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto;
+    min-height: 0;
+    gap: 2vh;
+    padding: 2vh;
+    scroll-snap-type: y mandatory;
+  }
+
+
+  /* --- Cards: full-width, stacked vertically --- */
+  .timeline-card {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5vh;
+    padding: 2vh;
+    overflow: visible;
+
+    /* Full-width cards */
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    border-radius: 0.8vh;
+
+    /* Scroll snap per card */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    /* Disable hover expand on small screens */
+    transition: none;
+  }
+
+  /* Card hover on mobile — no size change */
+  .timeline-card:hover {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    transition: box-shadow 0.3s ease;
+  }
+
+
+  /* --- Card image: full-width of card --- */
+  .timeline-card img {
+    width: 100%;
+    height: auto;
+    flex: 0 0 auto;
+    object-fit: cover;
+    border-radius: 0.6vh;
+  }
+
+
+  /* --- Description: always visible --- */
+  .timeline-card p {
+    flex: 0 0 auto;
+    max-width: none;
+    opacity: 1;
+    overflow: visible;
+    font-size: clamp(0.75rem, 3vw, 1.5rem);
+    line-height: 1.5;
+    text-align: center;
+    padding: 0 1vh;
+    color: #0f0f0f;
+  }
+
+  /* Ensure hover doesn't re-hide description */
+  .timeline-card:hover p {
+    opacity: 1;
+    font-size: clamp(0.75rem, 3vw, 1.5rem);
+    max-width: none;
+  }
+
+
+  /* --- Text sizes --- */
+  .timeline-card h2 {
+    font-size: clamp(1em, 4vw, 1.2em);
+  }
+
+  .timeline-card h3 {
+    font-size: clamp(1em, 5vw, 1.7em);
+  }
+}
